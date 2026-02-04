@@ -3,7 +3,6 @@ const products = [
     { id: '3DPRNTBT', tags: ['new', 'mens', 'womens'], type: 'png' }, 
     { id: 'DTHT', tags: ['new', 'mens'], type: 'png' },
     { id: 'WSPT', tags: ['new', 'mens'], type: 'png' },
-
 ];
 
 const gridContainer = document.getElementById('product-grid');
@@ -14,22 +13,27 @@ const filterButtons = document.querySelectorAll('.filter-btn');
 let autoScrollInterval;
 
 function init() {
-    gridContainer.innerHTML = '';
-    galleryContainer.innerHTML = '';
+    // Clear containers
+    if(gridContainer) gridContainer.innerHTML = '';
+    if(galleryContainer) galleryContainer.innerHTML = '';
 
     products.forEach((p) => {
         const fileExt = p.type || 'png'; 
-        const imagePath = `Products/${p.id}.${fileExt}`;
+        
+        // Use lowercase 'products' if that's your folder name
+        const imagePath = `./Products/${p.id}.${fileExt}`;
 
+        // Create Grid Item
         const gridItem = document.createElement('div');
         gridItem.className = 'item';
         gridItem.dataset.tags = JSON.stringify(p.tags);
         gridItem.innerHTML = `
-            <img src="${imagePath}" alt="${p.id}">
+            <img src="${imagePath}" alt="${p.id}" onerror="this.src='https://via.placeholder.com/200?text=Missing+File'">
             <div class="id-number" data-id-label="${p.id}"></div>
         `;
         gridContainer.appendChild(gridItem);
 
+        // Create Snap Item (Vertical Gallery)
         const snapItem = document.createElement('div');
         snapItem.className = 'snap-item';
         snapItem.dataset.tags = JSON.stringify(p.tags);
