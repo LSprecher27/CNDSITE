@@ -18,7 +18,7 @@ function init() {
     galleryContainer.innerHTML = '';
 
     products.forEach((p) => {
-        const fileExt = p.type || 'jpg'; 
+        const fileExt = p.type || 'png'; 
         const imagePath = `products/${p.id}.${fileExt}`;
 
         const gridItem = document.createElement('div');
