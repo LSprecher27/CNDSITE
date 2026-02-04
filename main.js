@@ -19,7 +19,7 @@ function init() {
 
     products.forEach((p) => {
         const fileExt = p.type || 'png'; 
-        const imagePath = `products/${p.id}.${fileExt}`;
+        const imagePath = `Products/${p.id}.${fileExt}`;
 
         const gridItem = document.createElement('div');
         gridItem.className = 'item';
